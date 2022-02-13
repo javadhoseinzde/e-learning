@@ -1,0 +1,7 @@
+{% for cours in Course %}
+    <a href="{% url 'learning:professor' cours.user %}">{{cours.user.get_full_name}}<br><hr></a>
+    {{cours.name}}<br><hr>
+    {{cours.level}}<br><hr>
+    {{cours.time}}<br><hr>
+    {{cours.start_time}}<br><hr>
+{% endfor %}

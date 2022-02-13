@@ -1,0 +1,70 @@
+{% extends 'account/base.html' %}
+{% block title %}
+  لیست دوره ها
+{% endblock %}
+{% block content %}
+              <!-- /.card-body -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="">
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+      
+                          <div class="input-group-append">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>نام دوره</th>
+                            <th>اسم استاد</th>
+                            <th>سطح</th>
+                            <th>شماره ترم</th>
+                            <th>مدت زمان</th>
+                            <th>زمان شروع</th>
+                            <th>وضعیت</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {% for course in object_list %}
+                              {% if course.Status == "d" or user.is_superuser %}
+                            <td><a href="{% url 'account:UpdateCourses' course.pk %}">{{ course.name }}</a></td>
+                              {% else %}
+                              <td>{{course.name}}</td>
+                              {% endif %}
+                            <td>{{course.user.get_full_name}}</td>
+                            <td><span class="tag tag-success">{{ course.level }}</span></td>
+                            <td>{{ course.term_number }}</td>
+                            <td>{{course.time}}</td>
+                            <td>{{course.start_time}}</td>
+                            <td>
+                              {% if course.Status == "p" %}
+                                  <p class="badge badge-success">منتشر شده</p><br>
+                                  <a target="_blank" class="badge badge-primary"href="{% url 'learning:detail' course.slug %}">نمایش پست در سایت</a>
+                              {% else %}
+                                  <p class="badge badge-danger">پیش نویس</p>
+                                  {% endif %}
+                                  {% if user.is_superuser %}
+                                  <a href="{% url 'account:DeleteCourses' course.pk %}" class="badge text-danger">حذف</a>
+                                  {% endif %}
+                                </td>
+
+                          </tr>
+                          {% endfor %}
+                        <tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+            {% endblock %}
