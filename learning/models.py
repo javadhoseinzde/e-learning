@@ -19,6 +19,7 @@ class Course(models.Model):
 	time = models.DateField(verbose_name="تاریخ شروع")
 	term_number = models.IntegerField(verbose_name="شماره ترم")
 	start_time = models.CharField(max_length=100, verbose_name="ساعت کلاس")
+	price = models.IntegerField(default=0)
 	Status = models.CharField(max_length=10, choices=STATUS, default="d", verbose_name="وضعیت")
 	students = models.ManyToManyField(User, blank=True, related_name="student")
 	def __str__(self):
@@ -31,11 +32,15 @@ class Course(models.Model):
 	objects = PublishManager()
 
 class tklif(models.Model):
-	courses = models.ForeignKey(Course, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	courses = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="coursess")
 	title = models.CharField(max_length=100)
 	session_number = models.IntegerField(default=1, null=True,)
 	description = models.TextField()
+	pic = models.ImageField(upload_to="images/")
 
+	def __str__(self):
+		return self.courses.name
 
 class StudentProfile(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -43,3 +48,13 @@ class StudentProfile(models.Model):
 
 	def __str__(self):
 		return self.user.username
+
+class Payment(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	cours = models.ManyToManyField(Course, blank=True)
+	paid = models.BooleanField(default=False)
+	create_time = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.user.username
+

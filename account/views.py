@@ -3,8 +3,15 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView
-from learning.models import Course
-from .mixins import FieldsMixin, FormValidMixin, UserAccessMixin, SuperUserAccessMixin
+from learning.models import Course, tklif
+from .mixins import (FieldsMixin,
+ 	FormValidMixin,
+  	UserAccessMixin,
+   	SuperUserAccessMixin,
+    FieldsTklifMixin,
+    TeacherAccessMixin,
+    FormValidsMixin
+)
 
 
 class CorseProfile(LoginRequiredMixin, ListView):
@@ -27,3 +34,29 @@ class DeleteCourse(SuperUserAccessMixin ,DeleteView):
 	model = Course
 	success_url = reverse_lazy('account:Profile')
 	template_name = "account/delete-course.html"
+
+
+class TklifProfile(LoginRequiredMixin ,ListView):
+	template_name = "account/tklifprofile.html"
+	def get_queryset(self):
+		if self.request.user.is_superuser:
+			return tklif.objects.all()
+		else:
+			return tklif.objects.filter(user=self.request.user) 
+
+
+class CreateTklif(LoginRequiredMixin,FieldsTklifMixin,FormValidsMixin,CreateView):
+	model = tklif
+	template_name = "account/create-update-tklif.html"
+	success_url = reverse_lazy("account:Profile")
+
+class UpdateTklif(LoginRequiredMixin,FieldsTklifMixin,FormValidsMixin, UpdateView):
+	model = tklif
+	template_name = "account/create-update-tklif.html"
+	success_url = reverse_lazy("account:Profile")
+	
+
+class DeleteTklif(DeleteView):
+	model = tklif
+	success_url = reverse_lazy('account:Profile')
+	template_name = "account/delete-tklif.html"

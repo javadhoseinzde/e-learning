@@ -4,4 +4,5 @@
     {{cours.level}}<br><hr>
     {{cours.time}}<br><hr>
     {{cours.start_time}}<br><hr>
+    <button><a href="{% url 'learning:detail' cours.slug %}">جزئیات بیشتر</a></button><br><hr>
 {% endfor %}

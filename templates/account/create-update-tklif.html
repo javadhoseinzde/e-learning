@@ -1,0 +1,82 @@
+{% extends 'account/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+  افزودن|اپدیت مقاله
+{% endblock %}
+{% block content %}
+<div class="col-md-12">
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title mb-0 float-left">{% block title-meta %}افزودن|اپدیت مقاله {% endblock %}</h3>
+    </div>
+      <form method="post">
+        <div class="card-body">
+            {% csrf_token %}
+                  <div class="row">
+
+                  <div class="col-12">
+                    
+                    {{ form.courses|as_crispy_field }}<br>
+                   
+                      </div>
+
+                          <div class="col-12">
+                      {{ form.title|as_crispy_field }}<br>
+                          </div>
+                          <div class="col-12">
+                            {{ form.session_number|as_crispy_field }}<br>
+                        </div>
+                          <div class="col-12">
+                            {{ form.description|as_crispy_field }}<br>
+                        </div>
+                        <div class="col-6">
+                          {{ form.time }}<br>
+                        </div>
+                        <div class="col-6">
+                          {{ form.term_number }}<br>
+                        </div>
+                        <div class="col-6">
+                          {{ form.start_time}}<br>
+                    
+                  </div>
+                </div>
+                
+    
+    <button type="submit" class="btn btn-primary">ثبت</button>
+              </div>
+  </form>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

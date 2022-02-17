@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, reverse_lazy
-from .views import CorseProfile, CreateCourse, UpdateCourse, DeleteCourse
+from .views import CorseProfile, CreateCourse, UpdateCourse, DeleteCourse, TklifProfile, CreateTklif, UpdateTklif, DeleteTklif
 from django.contrib.auth import views as auth_views
 app_name = "account"
 
@@ -21,6 +21,10 @@ urlpatterns = [
     path("create-course/", CreateCourse.as_view(), name="CreateCourses"),
     path("update-course/<int:pk>", UpdateCourse.as_view(), name="UpdateCourses"),
     path("delete-course/<int:pk>", DeleteCourse.as_view(), name="DeleteCourses"),
+    path("create-homework-list/", TklifProfile.as_view(), name="homework"),
+    path("create-tklif/", CreateTklif.as_view(), name="create-tklif"),
+    path("update-tklif/<int:pk>", UpdateTklif.as_view(), name="update-tklif"),    
+    path("Delete-tklif/<int:pk>", DeleteTklif.as_view(), name="Delete-tklif"),    
 
 
 ]

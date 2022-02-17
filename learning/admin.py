@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, StudentProfile, tklif
+from .models import Course, StudentProfile, tklif, Payment
 
 class CourseAdmin(admin.ModelAdmin):
 	list_display = ("user", "name", "level", "time", "Status")
@@ -18,3 +18,12 @@ class StudentTaklifAdmin(admin.ModelAdmin):
 	list_display = ("pk","title","description", "session_number")
 
 admin.site.register(tklif, StudentTaklifAdmin)
+
+class PaymentAdmin(admin.ModelAdmin):
+	list_display = ("user","paid","courses","create_time")
+	list_filter = (["create_time", "paid"])
+	def courses(self, obj):
+		return "\n".join([p.name for p in obj.cours.all()])
+
+
+admin.site.register(Payment, PaymentAdmin)
