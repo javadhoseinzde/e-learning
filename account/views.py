@@ -3,14 +3,15 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView
-from learning.models import Course, tklif
+from learning.models import Course, tklif, TklifAnswer
 from .mixins import (FieldsMixin,
  	FormValidMixin,
   	UserAccessMixin,
    	SuperUserAccessMixin,
     FieldsTklifMixin,
     TeacherAccessMixin,
-    FormValidsMixin
+    FormValidsMixin,
+    TklifMixin
 )
 
 
@@ -60,3 +61,11 @@ class DeleteTklif(DeleteView):
 	model = tklif
 	success_url = reverse_lazy('account:Profile')
 	template_name = "account/delete-tklif.html"
+
+class TklifAnswerAdmin(LoginRequiredMixin ,ListView):
+	template_name = "account/TklifProfileAdmin.html"
+	def get_queryset(self):
+		if self.request.user.is_superuser:
+			return TklifAnswer.objects.all()
+		else:
+			return TklifAnswer.objects.filter(taklif__user = self.request.user) 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, StudentProfile, tklif, Payment
+from .models import Course, StudentProfile, tklif, Payment, TklifAnswer
 
 class CourseAdmin(admin.ModelAdmin):
 	list_display = ("user", "name", "level", "time", "Status")
@@ -27,3 +27,10 @@ class PaymentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Payment, PaymentAdmin)
+
+
+class AnswerAdmin(admin.ModelAdmin):
+	list_display = ("user","taklif","ansser")
+
+
+admin.site.register(TklifAnswer, AnswerAdmin)

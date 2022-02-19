@@ -49,6 +49,12 @@ class StudentProfile(models.Model):
 	def __str__(self):
 		return self.user.username
 
+class TklifAnswer(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	taklif = models.ForeignKey(tklif, on_delete=models.CASCADE)
+	ansser = models.FileField(upload_to="tklifanser/")
+
+
 class Payment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	cours = models.ManyToManyField(Course, blank=True)

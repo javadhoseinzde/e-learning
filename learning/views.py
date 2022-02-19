@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from .models import Course, StudentProfile, tklif, Payment
+from .models import Course, StudentProfile, tklif, Payment, TklifAnswer
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic import View
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 from account.mixins import SuperUserAccessProfileMixin
-
+from django.views.generic.edit import FormView
+from .forms import AnswerForms
 
 class CourseList(ListView):
     queryset = Course.objects.publish()
@@ -63,6 +64,46 @@ class TklifList(ListView):
         return tklif.objects.filter(courses__students=self.request.user)
 
 
+class UploadAnswer(FormView):
+    form_class = AnswerForms
+    template_name = "learning/AnswerForm.html"
+    success_url =reverse_lazy("learning:home")
+
+    def form_valid(self, form, *args, **kwargs):
+        pk = self.kwargs.get("pk")
+        new_article = TklifAnswer.objects.create(
+            user = User.objects.get(pk=self.request.user.id),
+            ansser = form.cleaned_data["ansser"],
+            taklif = tklif.objects.get(pk=pk),
+            )
+
+        form.save(commit = False)
+        return super(UploadAnswer, self).form_valid(form)
+"""
+def UploadAnswer(request, pk):
+    
+    if request.method == "POST":
+        form = AnswerForms(request.POST)
+
+    def form_valid(self, form):
+        new_article = TklifAnswer.objects.create(
+            user = User.objects.get(pk=self.request.user.id),
+            ansser = form.cleaned_data["ansser"],
+            taklif = form.cleaned_data["taklif"],
+            )
+
+        form.save(commit = False)
+        return super(UploadAnswer, self).form_valid(form)
+
+        if form.is_valid():
+            new_article = TklifAnswer.objects.create(
+                user = User.objects.get(pk=request.user.id),
+                title = form.cleaned_data["ansser"],
+                message = form.cleaned_data["taklif"],
+            )
+            new_article.save()
+        else:
+            return HttpResponse("Error")"""
 
 from django.http import HttpResponse
 from django.shortcuts import redirect

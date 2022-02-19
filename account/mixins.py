@@ -74,3 +74,12 @@ class FormValidsMixin():
             self.obj.user = self.request.user
             self.obj.cours = Course
         return super().form_valid(form)
+
+class TklifMixin():
+    def dispatch(self, request ,*args, **kwargs):
+        course = get_object_or_404(Course)
+        tklifs = get_object_or_404(tklif)
+        if course.user == self.request.user or  tklifs.user == self.request.user:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("شما اجازه ورود ندارید")
