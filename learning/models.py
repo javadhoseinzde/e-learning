@@ -53,6 +53,9 @@ class TklifAnswer(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	taklif = models.ForeignKey(tklif, on_delete=models.CASCADE)
 	ansser = models.FileField(upload_to="tklifanser/")
+	
+	def __str__(self):
+		return self.user.username
 
 
 class Payment(models.Model):

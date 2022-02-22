@@ -15,7 +15,7 @@
         <form method="post">{% csrf_token %}
             <div class="card-body">
 
-            <p>ایا مطمئنید کخ این مقاله را"{{ object }}" از " {{ object.user.get_full_name }} " حذف کنید?</p>
+            <p>ایا مطمئنید که میخواهید کلاس "{{ object }}" را از " {{ object.user.get_full_name }} " حذف کنید?</p>
             {{ form }}
             <input type="submit" value="حذف">
             </div>
