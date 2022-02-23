@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class CourseSales(models.Model):
 	title = models.CharField(max_length=100)
 	teachers = models.CharField(max_length=100)
+	slug = models.SlugField(max_length=100, null=True)
 	description = models.TextField()
 	level = models.CharField(max_length=100)
 	price = models.IntegerField(default=0)

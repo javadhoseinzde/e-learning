@@ -1,5 +1,5 @@
 {% for courselist in object_list %}
-	{{courselist.title}}<br><hr>
+	<a href="{% url 'courseSales:CourseSalessDetail' courselist.slug %}">{{courselist.title}}</a><br><hr>
 	{{courselist.teachers}}<br><hr>
 	{{courselist.description}}<br><hr>
 	{{courselist.level}}<br><hr>
