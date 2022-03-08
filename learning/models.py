@@ -52,7 +52,7 @@ class StudentProfile(models.Model):
 class TklifAnswer(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	taklif = models.ForeignKey(tklif, on_delete=models.CASCADE)
-	ansser = models.FileField(upload_to="tklifanser/")
+	ansser = models.FileField(upload_to="tklifanser/", verbose_name="جواب سوال")
 	
 	def __str__(self):
 		return self.user.username

@@ -7,12 +7,14 @@ from .views import(
     TklifList,
     send_request,
     verify,
-    UploadAnswer
+    UploadAnswer,
+    CourseLists
 )
 app_name = "learning"
 
 urlpatterns = [
     path("", CourseList.as_view(), name="home"),
+    path("courselists/", CourseLists.as_view(), name="courselists"),
     path("detail/<slug:slug>", CourseDetail.as_view(), name="detail"),
     path("professor/<slug:username>/", ProfessorListCourse.as_view(), name="professor"),
     #path("student/profile/", StudentProfileList.as_view(), name="StuProDetail"),

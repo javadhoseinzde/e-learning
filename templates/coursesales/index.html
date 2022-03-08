@@ -37,7 +37,7 @@
                             <td><a href="{% url 'courseSales:UpdateCourseSales' courselist.pk %}">{{ courselist.title }}</a></td>
                             <td>{{courselist.teachers}}</td>
                               
-                            <td>{{courselist.description}}</td>
+                            <td>{{courselist.description|safe}}</td>
                             <td><span class="tag tag-success">{{ courselist.level }}</span></td>
                             <td>{{ courselist.price }}</td>
       						<td>

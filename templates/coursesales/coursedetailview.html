@@ -1,6 +1,27 @@
-{{detail.title}}</a><br><hr>
-	{{detail.teachers}}<br><hr>
-	{{detail.description}}<br><hr>
-	{{detail.level}}<br><hr>
-	{{detail.price}}<br><hr>
-<button><a href="{% url 'courseSales:request' detail.slug %}">خرید</a></button>
+{% extends "learning/base.html" %}
+{% load static %}
+{% block headerimg %}
+
+<img class="img-fluid" src="{% static 'pic/pexels-pixabay-301920.jpg' %}">
+
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="container">
+	<div class="row">
+		<div class="col-12 bg-white mb-3 p-4" style="border-radius:16px;">
+		<h3>توضیحات</h3>
+		<br>
+		<p class="">نام دوره : {{detail.title}}</p>
+		<p class="">نام معلم ها : {{detail.teachers}}</p>
+		<p class="">{{detail.description|safe}}</p>
+		<p class="">سطح : {{detail.level}}</p>
+		<p class="">قیمت : {{detail.price}}</p>
+		<a href="{% url 'courseSales:request' detail.slug %}" class="btn btn-primary btn-lg active mb-2">ادامه خرید</a>
+	</div>
+</div>
+</div>
+
+
+{% endblock %}

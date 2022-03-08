@@ -5,9 +5,9 @@ from learning.models import Course, StudentProfile, tklif
 class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_superuser:
-            self.fields = ['user', 'slug','name', 'text' ,'level',  'time',  'term_number',  'start_time',  'Status', ]
+            self.fields = ['user', 'slug','name', 'text' ,'level',  'time',  'term_number',  'start_time',  'Status', 'price']
         elif request.user.is_staff:
-            self.fields = ['slug','name', 'text' ,'level',  'time',  'term_number',  'start_time', ]
+            self.fields = ['slug','name', 'text' ,'level',  'time',  'term_number',  'start_time','price']
         else:
             raise Http404("شما اجازه ورود ندارید")
         return super().dispatch(request, *args, **kwargs)

@@ -11,9 +11,15 @@ from django.views.generic.edit import FormView
 from .forms import AnswerForms
 
 class CourseList(ListView):
-    queryset = Course.objects.publish()
+    queryset = Course.objects.publish().order_by("-pk")[0:6]
     template_name = "learning/home.html"
     context_object_name = "Course"
+
+class CourseLists(ListView):
+    queryset = Course.objects.publish()
+    template_name = "learning/courselists.html"
+    context_object_name = "Course"
+
 
 class CourseDetail(DetailView):
     template_name = "learning/detail.html"

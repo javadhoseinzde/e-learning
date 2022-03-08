@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, FormView
 from learning.models import Course, tklif, TklifAnswer
 from .mixins import (FieldsMixin,
  	FormValidMixin,
@@ -11,17 +11,17 @@ from .mixins import (FieldsMixin,
     FieldsTklifMixin,
     TeacherAccessMixin,
     FormValidsMixin,
-    TklifMixin
+    TklifMixin,
 )
-
+from .forms import UserRegistrationForm
 
 class CorseProfile(LoginRequiredMixin, ListView):
 	template_name = "account/index.html"
 	def get_queryset(self):
 		if self.request.user.is_superuser:
-			return Course.objects.all()
+			return Course.objects.all().order_by("-pk")
 		else:
-			return Course.objects.filter(user=self.request.user) 
+			return Course.objects.filter(user=self.request.user).order_by("-pk")
 
 class CreateCourse(LoginRequiredMixin,FormValidMixin, FieldsMixin ,CreateView):
 	model = Course
@@ -69,3 +69,22 @@ class TklifAnswerAdmin(LoginRequiredMixin ,ListView):
 			return TklifAnswer.objects.all()
 		else:
 			return TklifAnswer.objects.filter(taklif__user = self.request.user) 
+
+def RegistrationForm(request):
+	if request.method == 'POST':
+		user_form = UserRegistrationForm(request.POST)
+		if user_form.is_valid():
+		# Create a new user object but avoid saving it yet
+			new_user = user_form.save(commit=False)
+			# Set the chosen password
+			new_user.set_password(
+				user_form.cleaned_data['password'])
+			# Save the User object
+			new_user.save()
+			return redirect("learning:home")
+
+	else:
+		user_form = UserRegistrationForm()
+		return render(request,
+			'registration/RegistrationForm.html',
+				{'user_form': user_form})
