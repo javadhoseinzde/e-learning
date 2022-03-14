@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+              <!-- /.card-body -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="">
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+      
+                          <div class="input-group-append">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>دانش اموز</th>
+                            <th>تکلیف</th>
+                            <th>اسم درس</th>
+                            <th>جواب</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {% for tklifss in object_list %}
+                            <td>{{tklifss.user}}</td>
+                            <td>{{tklifss.taklif.title}}</td>
+                            <td>{{tklifss.taklif}}</td>
+                            <td><a href="{{tklifss.ansser.url}}">{{ tklifss.ansser }}</a></td>
+ 
+
+                          </tr>
+                          {% endfor %}
+                        <tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+            {% endblock %}

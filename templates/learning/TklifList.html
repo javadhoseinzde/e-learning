@@ -1,0 +1,39 @@
+{% extends "learning/base.html" %}
+{% load static %}
+
+{% block headerimg %}
+
+<img class="img-fluid" src="{% static 'pic/pexels-pixabay-301920.jpg' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="text-centr mb-4">
+<div class="container">
+<br><br><h4 class="text-left">لیست تکالیف شما</h4><hr>
+<div class="row">
+{% for tklif in tklifs %}
+<div class="col-sm-12 col-md-5 col-lg-3 mx-4">
+    <div class="card" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;" >
+  <div class="card-body">
+    <h5 class="card-title mb-3">اسم تکلیف : {{tklif.courses.name}}</h5>
+    <h6 class="card-subtitle mb-2 ">موضوع : {{tklif.title}}</a></h6>
+    <p class="card-text">متن تکلیف: {{tklif.description|truncatewords:4}}</p>
+    <p class="card-text">شماره تکلیف: {{tklif.session_number}}</p>
+    <a href="{% url 'learning:AnswerForm' tklif.pk %}" class="card-link">ارسال تکلیف</a>
+</div>
+</div>
+
+  </div>
+{% empty %}
+  <h3 class="mx-4">
+    شما هیچ تمرینی ندارید
+  </h3>
+
+{% endfor %}
+</div>
+</div>
+</section>
+{% endblock %}

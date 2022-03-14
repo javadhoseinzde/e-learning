@@ -1,0 +1,14 @@
+{% for detail in proflist %}
+    {{detail.user.get_full_name}}<br><hr>
+    {{detail.course.name}}<br><hr> 
+    {{detail.course.user}}<br><hr>
+    {{detail.course.text}}<br><hr>
+    {{detail.course.level}}<br><hr>
+    {{detail.course.time}}<br><hr>
+    {{detail.course.term_number}}<br><hr>
+    {{detail.course.start_time}}<br><hr>
+    {% for detail in detail.course.all %}
+
+    <a href="{{detail.slug}}">{{detail.slug}}</a>
+{% endfor %} 
+{% endfor %}

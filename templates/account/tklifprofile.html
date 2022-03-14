@@ -1,0 +1,51 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+              <!-- /.card-body -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="">
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+      
+                          <div class="input-group-append">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>اسم دوره</th>
+                            <th>نام تکلیف</th>
+                            <th>شماره جلسه</th>
+                            <th>توضیحات</th>
+                            <th>اسم معلم</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {% for tklif in object_list %}
+                            <td><a href="{% url 'account:update-tklif' tklif.pk %}">{{tklif.courses}}</td></a>
+                            <td>{{tklif.title}}</td>
+                            <td>{{ tklif.session_number }}</td>
+                            <td>{{tklif.description}}</td>
+                            <td>{{tklif.user.get_full_name}}
+                            <a href="{% url 'account:Delete-tklif' tklif.pk %}" class="badge text-danger">حذف</a></td>
+
+                          </tr>
+                          {% endfor %}
+                        <tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+            {% endblock %}
