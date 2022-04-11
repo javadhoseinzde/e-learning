@@ -1,0 +1,25 @@
+body{
+background-color: #f7f7f7;
+}
+.headerimgs{
+	width:100%;
+	height: 100%;
+}
+
+@media only screen and (max-width: 1080px) {
+  .headerimgs {
+   	width: 100%;
+   	height: 40%;
+  }
+}
+.card{
+	width: 17rem;
+	margin-top: 38;"
+}
+
+.card{
+	border-radius: 10px;
+}
+.card-a{
+	margin-top: 50px;
+}

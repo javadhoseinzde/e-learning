@@ -1,0 +1,16 @@
+{% extends "learning/base.html" %}
+
+{% block content %}
+    {% for pteachers in pteacher %}
+        {{pteachers.fname}}<br>
+        {{pteachers.lname}}<br>
+        {{pteachers.info}}<br>
+        {{pteachers.level}}<br>
+        {{pteachers.age}}<br>
+        {{pteachers.pic}}<br>
+        <a href="{% url 'account:teachersDetail' pteachers.slug %}" class="btn btn-success btn-lg active" role="button" aria-pressed="true">دیدن پروفایل</a>
+
+    {% endfor %}
+
+    
+{% endblock %}

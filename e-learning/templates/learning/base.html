@@ -1,0 +1,87 @@
+{% load static %}
+
+<html lang="fa" dir="rtl">
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css" integrity="sha384-P4uhUIGk/q1gaD/NdgkBIl3a6QywJjlsFJFk7SPRdruoGddvRVSwv5qFnvZ73cpz" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js" integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH" crossorigin="anonymous"></script>	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #563d7c;">
+  <a class="navbar-brand text-white" href="#">مسیر رشد</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'learning:home' %}">خانه <span class="sr-only">(current)</span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'learning:TklifList' %}">تکالیف</a>
+      </li>
+      {% else %}
+
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'learning:courselists' %}">کلاس های</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'learning:courselists' %}">امتحانات</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'courseSales:CourseSaless' %}">فیلم اموزشی</a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'courseSales:CourseSaless' %}">فیلم های خریده شده</a>
+      </li>
+      {% endif %}
+      {% if user.is_superuser or user.is_staff %}
+      <li class="nav-item active">
+        <a class="nav-link mx-2 text-white" href="{% url 'account:Profile' %}">پروفایل اساتید</a>
+      </li>
+      {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      {% if user.is_authenticated %}
+      <li class="nav-link active">
+        <a href="{% url 'account:logout' %}" class="btn btn-outline-danger my-2 my-sm-0" role="button" aria-pressed="true">خروج</a>
+      </li>
+      {% else %}
+        <li class="nav-link active">
+        <a href="{% url 'account:login' %}" class="btn btn-outline-primary my-2 my-sm-0" role="button" aria-pressed="true">ورود</a>
+      </li>
+        <li class="nav-link active">
+        <a href="{% url 'account:registration' %}" class="btn btn-outline-success my-2 my-sm-0" role="button" aria-pressed="true">ثبت نام</a>
+      </li>
+        {% endif %}
+    </form>
+  </div>
+</nav>
+{% block headerimg %}
+
+{% endblock %}
+	{% block content %}
+
+	{% endblock %}
+	{% block footer %}
+  <br>
+  <br><br><br><br><hr><br>
+  <footer class="main-footer">
+    <strong>
+      لیست دوره های من
+    </strong>
+    </div>
+  </footer>
+<br>
+	{% endblock %}
+</html>
+

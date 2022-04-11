@@ -1,0 +1,33 @@
+{% extends 'learning/base.html' %}
+
+{% block content %}
+
+    
+<section class="text-centr mb-4">
+    <div class="container">
+        <br><br><h4 class="text-left">فایل امتحان</h4><hr>
+        <div class="row">
+            {% for quizs in quiz %}
+            <div class="col-sm-12 col-md-12 col-lg-3 mx-4">
+                <div class="card" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; width:1050px; " >
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">اسم استاد :{{ quizs.user  }}</h5>
+                        <h6 class="card-subtitle mb-2 ">کلاس :{{  quizs.courses  }}</a></h6>
+                        <p class="card-text">موضوع : {{  quizs.title  }}</p>
+                        <a href="{{quizs.pic.url}}" class="btn btn-primary btn-lg active mb-2" role="button" aria-pressed="true">فایل امتحان</a><br>
+                        <a href="{% url 'learning:QuizAnswer' quizs.pk %}" class="btn btn-success btn-lg active" role="button" aria-pressed="true">ارسال کوئیز</a>
+                    </div>
+                </div>        
+            </div>
+            
+            
+            {% empty %}
+                <h3 class="mx-4">
+            شما هیچ تمرینی ندارید                   
+                </h3>
+        
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
