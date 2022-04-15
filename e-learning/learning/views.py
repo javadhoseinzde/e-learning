@@ -9,9 +9,11 @@ from django.contrib.auth.models import User
 from account.mixins import SuperUserAccessProfileMixin
 from django.views.generic.edit import FormView
 from .forms import AnswerForms, QuizAnswerForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 class CourseList(ListView):
-    queryset = Course.objects.publish().order_by("-pk")[0:6]
+    queryset = Course.objects.publish().order_by("-pk")[0:4]
     template_name = "learning/home.html"
     context_object_name = "Course"
 
@@ -146,7 +148,7 @@ description = "توضیحات مربوط به تراکنش را در این قس
 email = 'email@example.com'  # Optional
 mobile = '09123456789'  # Optional
  # Important: need to edit for realy server.
-
+@login_required
 def send_request(request,slug):
     p1 = User.objects.get(username = request.user)
 

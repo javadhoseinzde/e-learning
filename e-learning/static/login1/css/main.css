@@ -4,7 +4,11 @@
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
+.body{
 
+  direction: left;
+  text-align: left;
+}
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf'); 
@@ -448,7 +452,7 @@ iframe {
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
-  text-align: left;
+  text-align: right;
 
   visibility: hidden;
   opacity: 0;

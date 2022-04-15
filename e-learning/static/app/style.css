@@ -23,3 +23,8 @@ background-color: #f7f7f7;
 .card-a{
 	margin-top: 50px;
 }
+.btn-primary{
+    color: #fff;
+    background-color: #693f9b;
+    border-color: #331577;
+}

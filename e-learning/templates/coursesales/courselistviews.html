@@ -2,9 +2,7 @@
 {% load static %}
 {% load custom-tag %}
 
-{% block title %}
-<title>مسیر رشد|خانه</title>
-{% endblock %}
+
 
 {% block headerimg %}
 
@@ -40,30 +38,21 @@
             <br><br><h4 class="text-left text-white">کلاس های اخیر</h4><hr>
         <div class="row">
     
-        {% for cours in Course %}
+        {% for courssale in Coursesale %}
         <div class="col-sm-12 col-md-3 col-lg-3">
             <div class="card" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; width: auto; height: auto; border-radius: 10px;">
         <div class="card-body">
-            <h5 class="card-title mb-3">اسم دوره: {{cours.name}}</h5>
-            <p class="card-title mb-3 ">نام مدرس: {{cours.user.get_full_name}}</p>
-            <p class="card-title">تاریخ شروع: {{cours.time}}</p>
-            <p class="card-title">ساعت کلاس: {{cours.start_time}}</p>
-            <p class="card-title">سطح: {{cours.level}}</p>
-            <a href="{% url 'learning:detail' cours.slug %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ادامه</a>
+            <h5 class="card-title mb-3">اسم دوره: {{courssale.title}}</h5>
+            <p class="card-title">تاریخ شروع: {{courssale.level}}</p>
+            <p class="card-title">ساعت کلاس: {{courssale.price}}</p>
+            <a href="{% url 'courseSales:CourseSalessDetail' courssale.slug %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">توضیحات</a>
+
         </div>
         </div>
         </div>
+        
         {% endfor %}
         </div>
     </section>
-    <div class="container">
-    <a href="{% url 'learning:courselists' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">دیدن همه کلاس ها</a>
-    </div>
 </div>
-
-</div>
-<div class="container">
-<br><br><h4 class="text-left">فیلم های اموزشی اخیر</h4><hr>
-</div>
-{% corsesal %}  
-{% endblock %}
+{% endblock  %}

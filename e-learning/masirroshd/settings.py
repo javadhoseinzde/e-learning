@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-gf-@y-a3d#c$mw)s*6t++^r*#t=&!_j+hbqgpb9!sv*iadd(7a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -74,16 +74,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'masirroshd.wsgi.application'
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}"""
+}
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
@@ -93,7 +93,7 @@ DATABASES = {
         'PORT': '5432',
 
     }
-}
+}"""
 
 """DATABASES = {
     'default': {

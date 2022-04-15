@@ -1,9 +1,9 @@
 {% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-ir" dir="rtl">
 <head>
-	<title>Login V2</title>
+	<title>ورود</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -58,8 +58,6 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-						</span>
 						{{form.password|add_class:"input100"}}
 						<span class="focus-input100" data-placeholder="گذرواژه"></span>
 						{% if form.password.errors %}
@@ -71,7 +69,7 @@
 
 					<a class="myfont" href="#">فراموشی گذرواژه</a>
 					<br>
-					<a class="myfont" href="#">ثبت نام کنید</a>
+					<a class="myfont" href="{% url 'account:registration' %}">ثبت نام کنید</a>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">

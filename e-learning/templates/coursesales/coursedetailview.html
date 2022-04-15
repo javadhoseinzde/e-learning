@@ -15,7 +15,7 @@
 		<br>
 		<p class="">نام دوره : {{detail.title}}</p>
 		<p class="">نام معلم ها : {{detail.teachers}}</p>
-		<p class="">{{detail.description|safe}}</p>
+		<p class="">توضیحات: {{detail.description|striptags}}</p>
 		<p class="">سطح : {{detail.level}}</p>
 		<p class="">قیمت : {{detail.price}}</p>
 		<a href="{% url 'courseSales:request' detail.slug %}" class="btn btn-primary btn-lg active mb-2">ادامه خرید</a>

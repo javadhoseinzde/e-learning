@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.http import Http404
@@ -6,7 +7,7 @@ from .models import CourseSales, CourseSalesProfile
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from account.mixins import SuperUserAccessMixin
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 class CourseSalesList(LoginRequiredMixin, SuperUserAccessMixin ,ListView):
 	template_name = "coursesales/index.html"
@@ -37,7 +38,8 @@ class DeleteCourseSales(SuperUserAccessMixin ,DeleteView):
 
 class CourseSaless(ListView):
 	template_name = "coursesales/courselistview.html"
-	model = CourseSales
+	def get_queryset(self):
+		return CourseSalesProfile.objects.filter(user = self.request.user)
 
 class CourseSalessDetail(DetailView):
 	template_name = "coursesales/coursedetailview.html"
@@ -53,6 +55,12 @@ class CourseSalessDetail(DetailView):
 		context["detail"] = detail
 		return context
 
+class CourseSalessLists(ListView):
+	template_name = "coursesales/courselistviews.html"
+	queryset = CourseSales.objects.all()
+	context_object_name = "Coursesale"
+
+	
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -70,6 +78,7 @@ email = 'email@example.com'  # Optional
 mobile = '09123456789'  # Optional
  # Important: need to edit for realy server.
 
+@login_required
 def send_request(request,slug):
 	p2 = User.objects.get(username = request.user)
 

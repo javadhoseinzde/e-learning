@@ -79,7 +79,7 @@ class Quiz(models.Model):
 class QuizAnswer(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-	ansser = models.FileField(upload_to="tklifanser/", verbose_name="جواب سوال")
+	ansser = models.FileField(upload_to="tklifanser/", verbose_name="پاسخ امتحان")
 
 	def __str__(self) -> str:
 		return self.user.username

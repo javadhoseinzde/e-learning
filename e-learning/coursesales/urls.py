@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CourseSalesList, CreateCourseSales, UpdateCourseSales, DeleteCourseSales, CourseSaless, CourseSalessDetail, send_request, verify
+from .views import CourseSalesList, CreateCourseSales, UpdateCourseSales, DeleteCourseSales, CourseSaless, CourseSalessDetail, send_request, verify, CourseSalessLists
 
 app_name = "courseSales"
 urlpatterns = [
@@ -12,6 +12,8 @@ urlpatterns = [
 
     path('request/<slug:slug>', send_request, name='request'),
     path('verify/<slug:slug>/<int:pk>', verify , name='verify'),
+    path('Coursesales-list/', CourseSalessLists.as_view() , name='Coursesalelists'),
+
 
 
 ]

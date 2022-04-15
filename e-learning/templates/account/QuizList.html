@@ -1,5 +1,7 @@
 {% extends "account/base.html" %}
-
+{% block title %}
+  لیست امتحانات
+{% endblock %}
 {% block content %}
               <!-- /.card-body -->
               <div class="row">
@@ -34,10 +36,7 @@
                             <td>{{tklif.title}}</td>
                             <td>{{tklif.pic}}
                             <a href="#" class="badge text-danger">حذف</a></td>
-                            
-                            
-                            title
-                            pic
+                          
                           </tr>
                           {% endfor %}
                         <tbody>
