@@ -1,0 +1,62 @@
+{% extends "account/base.html" %}
+{% block title %}
+  لیست دوره های فروشی
+{% endblock %}
+{% block content %}
+              <!-- /.card-body -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="">
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+      
+                          <div class="input-group-append">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>نام دوره</th>
+                            <th>معلم ها</th>
+                            <th>توضیحات</th>
+                            <th>سطح</th>
+                            <th>قیمت</th>
+                            <th>حذف</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {% for courselist in object_list %}
+                              
+                            <td><a href="{% url 'courseSales:UpdateCourseSales' courselist.pk %}">{{ courselist.title }}</a></td>
+                            <td>{{courselist.teachers}}</td>
+                              
+                            <td>{{courselist.description|safe}}</td>
+                            <td><span class="tag tag-success">{{ courselist.level }}</span></td>
+                            <td>{{ courselist.price }}</td>
+      						<td>
+                                  {% if user.is_superuser %}
+                                  <a href="{% url 'courseSales:DeleteCourseSales' courselist.pk %}" class="badge text-danger">حذف</a>
+                                  {% endif %}      							
+      						</td>
+                                
+
+                          </tr>
+                          {% endfor %}
+                        <tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+            {% endblock %}

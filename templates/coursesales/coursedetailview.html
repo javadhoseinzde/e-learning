@@ -1,0 +1,49 @@
+{% extends "learning/base.html" %}
+{% load static %}
+{% block headerimg %}
+
+<img class="img-fluid" src="{% static 'pic/pexels-pixabay-301920.jpg' %}">
+
+{% endblock %}
+
+{% block content %}
+<style>
+ @media only screen and (max-width: 600px) {.video {width: 430px;}}
+ @media only screen and (max-width: 600px) {.video {width: 430px;}}
+ @media only screen and (max-width: 1100px) {.video {width: 460px;}}
+ @media only screen and (max-width: 1115px) {.video {width: 475px;}}
+ @media only screen and (max-width: 850px) {.video {width: 550px; margin-right: 55px;}}
+ @media only screen and (max-width: 780px) {.video {width: 410px;}}
+ @media only screen and (max-width: 520px) {.video {width: 380px;}}
+ @media only screen and (max-width: 480px) {.video {width: 330px;}}
+ @media only screen and (max-width: 440px) {.video {width: 300px;}}
+ @media only screen and (max-width: 412px) {.video {width: 270px;}}
+ @media only screen and (max-width: 360px) {.video {width: 230px;}}
+
+
+</style>
+<br><br><br>
+<div class="container">
+	<hr>
+	<div class="row">
+		<div class="col-lg-6 col-sm-12 mb-3 p-4" style="border-radius:16px;">
+		<h3>توضیحات</h3>
+		<br>
+		<p class="">نام دوره : {{detail.title}}</p>
+		<p class="">نام معلم ها : {{detail.teachers}}</p>
+		<p class="">توضیحات: {{detail.description|striptags}}</p>
+		<p class="">سطح : {{detail.level}}</p>
+		<p class="">قیمت : {{detail.price}}</p>
+		<a href="{% url 'courseSales:request' detail.slug %}" class="btn btn-primary btn-lg active mb-2">ادامه خرید</a>
+	</div>
+	<div class="col-lg-6 col-sm-12 mt-4">
+
+		  <div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="{% static 'pic/1.mp4' %}" allowfullscreen></iframe>
+		  </div>
+			  </div>
+</div>
+</div>
+
+
+{% endblock %}

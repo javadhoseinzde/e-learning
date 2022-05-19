@@ -1,0 +1,25 @@
+{% extends 'account/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} حذف مقاله {% endblock %}
+
+{% block title-safhe %} حذف مقاله {% endblock %}
+{% block content %}
+<div class="col-md-8 text-center  mx-auto">
+    <!-- general form elements -->
+    <div class="card card-danger">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">{% block title-meta %}حذف مقاله {% endblock %}</h3>
+        </div>
+        
+        <form method="post">{% csrf_token %}
+            <div class="card-body">
+
+            <p>ایا مطمئنید که میخواهید کلاس "{{ object }}" را از " {{ object.user.get_full_name }} " حذف کنید?</p>
+            {{ form }}
+            <input type="submit" value="حذف">
+            </div>
+        </form>
+  </div>
+</div>
+{% endblock %}

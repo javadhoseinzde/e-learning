@@ -1,0 +1,58 @@
+{% extends "learning/base.html" %}
+{% load static %}
+{% load custom-tag %}
+
+
+
+{% block headerimg %}
+
+<img class="img-fluid" src="{% static 'pic/pexels-pixabay-301920.jpg' %}">
+{% endblock %}
+
+{% block content %} 
+<br><br><hr>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 mx-sm-4 col-md-4 p-3 ml-2 col-sm-1">
+            <h3>درباره اموزشگاه</h3>
+            <h6 class="text-muted">اموزشگاه مسیر رشد اموزشگاهی برای یادگیری زبان اینگلیسی و حرف زدن و یادگیری تمامی گرامر یکی از مزیت های اموزشگاه مسیر رشد استفاده از دانشجویان خود بعد از ارتقای سطح و یادگیری در حد لازم به معلمی و تدرس است</h6>
+
+        </div>
+    <div class="col-lg-3 p-3 col-md-4 col-sm-1">
+        <h3>درباره یادگیری</h3>
+        <h6 class="text-muted">یادگیری زبان مانند یادگیری کودک</h6>
+        <h6 class="text-muted">اموزش اسپیکینگ</h6>
+        <h6 class="text-muted">اموزش گرامر</h6>
+        <h6 class="text-muted">اموزش تست زدن برای کنکور</h6>
+    </div>
+    <div class="col-lg-4 p-3 col-md-3 col-sm-1">
+        <h4 class="">و از همه مهم تر</h4>
+        <h6 class="text-muted">برگزاری کلاس های ttc و اموزش معلمی با مدرک معتبر برای تدرس و اموزش</h6>
+    </div>
+</div>
+</div>
+<br><br>
+<div class="bg-danger p-3">
+    <section class="mb-4">
+        <div class="container">
+            <br><br><h4 class="text-left text-white">کلاس های اخیر</h4><hr>
+        <div class="row">
+    
+        {% for courssale in Coursesale %}
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <div class="card" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; width: auto; height: auto; border-radius: 10px;">
+        <div class="card-body">
+            <h5 class="card-title mb-3">اسم دوره: {{courssale.title}}</h5>
+            <p class="card-title">تاریخ شروع: {{courssale.level}}</p>
+            <p class="card-title">ساعت کلاس: {{courssale.price}}</p>
+            <a href="{% url 'courseSales:CourseSalessDetail' courssale.slug %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">توضیحات</a>
+
+        </div>
+        </div>
+        </div>
+        
+        {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock  %}

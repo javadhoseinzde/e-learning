@@ -1,0 +1,10 @@
+{% for detail in detail.course.all %}
+{{detail.name}}<br><hr> 
+{{detail.user}}<br><hr>
+{{detail.text}}<br><hr>
+{{detail.level}}<br><hr>
+{{detail.time}}<br><hr>
+{{detail.term_number}}<br><hr>
+{{detail.start_time}}<br><hr>
+<a href="{{detail.slug}}">{{detail.slug}}</a>
+{% endfor %} 

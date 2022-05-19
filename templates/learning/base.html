@@ -1,0 +1,125 @@
+{% load static %}
+
+<html lang="fa" dir="rtl">
+<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css" integrity="sha384-P4uhUIGk/q1gaD/NdgkBIl3a6QywJjlsFJFk7SPRdruoGddvRVSwv5qFnvZ73cpz" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js" integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH" crossorigin="anonymous"></script>	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+{% block title %}
+  
+{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+.footr{
+  background-color:rgb(104, 44, 182);
+  border-radius: 5000px 0px 0px 0px;
+  height: 200px;
+  max-width: 1000px;
+
+}
+
+@media only screen and (max-width: 600px) {
+  #p1 {
+    max-width: 303;
+  }
+}
+@media only screen and (max-width: 600px) {
+			.video {
+			  max-width: 300;
+			}
+		  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/reboot.css' %}">
+
+<div class="bg-white sticky-top" style="opacity: 0.95; box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;">
+  <nav class="navbar navbar-expand-lg navbar-light  bg-opacity-75 container" style="background-color: #ffffff;">
+    <a class="navbar-brand text-black" href="{% url 'learning:home' %}">مسیر رشد</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'learning:home' %}">خانه <span class="sr-only">(current)</span></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'learning:TklifList' %}">تکالیف</a>
+        </li>
+        {% else %}
+
+        {% endif %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'learning:courselists' %}">کلاس ها</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'learning:quiz' %}">امتحانات</a>
+        </li>
+        {% endif %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'courseSales:Coursesalelists' %}">دوره اموزشی</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'learning:quiz' %}">درباره ما</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'courseSales:CourseSaless' %}">دوره های خریده شده</a>
+        </li>
+        {% endif %}
+        {% if user.is_superuser or user.is_staff %}
+        <li class="nav-item active">
+          <a class="nav-link mx-2 text-black" href="{% url 'account:Profile' %}">پروفایل اساتید</a>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        {% if user.is_authenticated %}
+        <li class="nav-link active">
+          <a href="{% url 'account:logout' %}" class="btn btn-outline-danger my-2 my-sm-0" role="button" aria-pressed="true">خروج</a>
+        </li>
+        {% else %}
+          <li class="nav-link active">
+          <a href="{% url 'account:login' %}" class="btn btn-outline-primary my-2 my-sm-0" role="button" aria-pressed="true">ورود</a>
+        </li>
+          <li class="nav-link active">
+          <a href="{% url 'account:registration' %}" class="btn btn-outline-success my-2 my-sm-0" role="button" aria-pressed="true">ثبت نام</a>
+        </li>
+          {% endif %}
+      </form>
+    </div>
+  </nav>
+</div>
+{% block headerimg %}
+
+{% endblock %}
+	{% block content %}
+
+	{% endblock %}
+	{% block footer %}
+  <br>
+  <br><hr><br>
+  <footer class="main-footer" style="background-color: #563d7c;">
+
+  </footer>
+  <footer>
+    <div class="footr">
+      <div class=" mx-2 p-3">
+        <p class="text-white" id="p1">آدرس : خیابان بهشتی کوچه 25 شرقی روبروی زمین چمن پلاک 53</p>
+        <p class="text-white">شماره تماس: 0213357222</p>
+        <p class="text-white">آدرس ایمیل: masireroshd@gmail.com</p>
+        <a href="//www.instagram.com/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+        </svg></a>
+      </div>
+      </div>
+    </div>
+  </footer>
+	{% endblock %}
+</html>
+
