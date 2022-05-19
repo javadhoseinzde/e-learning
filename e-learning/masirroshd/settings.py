@@ -74,26 +74,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'masirroshd.wsgi.application'
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}"""
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'root',
-        'PASSWORD': 'rhtKFbwgVoWmk7kaofdYD8mj',
-        'HOST': 'django-database',
+        'PASSWORD': 'lhytYRLJKfNnTMn5p2VR6YGD',
+        'HOST': 'database-learning',
         'PORT': '5432',
 
     }
-}"""
+}
 
 """DATABASES = {
     'default': {

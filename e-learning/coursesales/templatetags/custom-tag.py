@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.inclusion_tag("learning/homes.html")
 def corsesal():
-	coursesal = CourseSales.objects.all()
+	coursesal = CourseSales.objects.all().order_by("-pk")[0:4]
 	return {
 		"coursesal":coursesal
 		}
